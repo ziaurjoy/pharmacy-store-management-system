@@ -79,7 +79,7 @@ DATABASES = {
 		'NAME': 'medical_store_management_system_db',
 		'USER': 'root',
 		'PASSWORD': '',
-		'HOST':'localhost',
+		'HOST':'127.0.0.1',
 		'PORT':'3306',
 	}
 }
