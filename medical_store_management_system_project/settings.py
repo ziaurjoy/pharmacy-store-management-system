@@ -74,12 +74,21 @@ WSGI_APPLICATION = 'medical_store_management_system_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+	'default': {
+		'ENGINE': 'django.db.backends.mysql',
+		'NAME': 'medical_store_management_system_db',
+		'USER': 'root',
+		'PASSWORD': '',
+		'HOST':'localhost',
+		'PORT':'3306',
+	}
 }
 
+
+# AUTH_USER_MODEL = "users_app.Users"
+# LOGIN_URL='login'
+# LOGIN_REDIRECT_URL = 'dashboard'
+# LOGOUT_REDIRECT_URL = 'login'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
