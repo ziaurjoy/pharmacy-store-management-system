@@ -5,4 +5,5 @@ from .models import Company
 class CompanySerliazer(serializers.ModelSerializer):
     class Meta:
         model=Company
-        fields="__all__"
+        # fields="__all__"
+        exclude = ('added_on',)
