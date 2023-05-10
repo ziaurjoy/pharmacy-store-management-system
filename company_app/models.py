@@ -15,21 +15,24 @@ class Company(models.Model):
         return self.name
     
 
-class CompanyAccount(models.Model):
-    choices=(
-        (1,"Debit"),
-        (2,"Credit")
-        )
-    company = models.ForeignKey(Company,on_delete=models.CASCADE)
-    transaction_type = models.CharField(choices=choices,max_length=255)
-    transaction_amt = models.CharField(max_length=255)
-    transaction_date = models.DateField()
-    payment_mode = models.CharField(max_length=255)
-    added_on = models.DateTimeField(auto_now_add=True)
-
-
 class CompanyBank(models.Model):
     bank_account_no = models.CharField(max_length=150)
     ifsc_no = models.CharField(max_length=100)
     company = models.ForeignKey(Company,on_delete=models.CASCADE)
     added_on = models.DateTimeField(auto_now_add=True)
+
+
+class CompanyAccount(models.Model):
+    choices=(
+        ("Debit","Debit"),
+        ("Credit","Credit")
+        )
+    company = models.ForeignKey(Company,on_delete=models.CASCADE)
+    transaction_type = models.CharField(choices=choices,max_length=25)
+    transaction_amt = models.CharField(max_length=255)
+    transaction_date = models.DateField(blank=True, null=True)
+    payment_mode = models.CharField(max_length=255)
+    added_on = models.DateTimeField(auto_now_add=True)
+
+
+

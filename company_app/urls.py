@@ -2,16 +2,13 @@
 
 from django.urls import path
 
-from company_app.views import CompanyViewSet
+from company_app.views import CompanyViewSet, CompanyBankViewSet, CompanyAccounViewSet
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register('api', CompanyViewSet, basename='company')
-urlpatterns = router.urls
+router.register(r'api/viewset', CompanyViewSet, basename='company')
+router.register(r'api/bank/viewset', CompanyBankViewSet, basename='company-bank')
+router.register(r'api/account/viewset', CompanyAccounViewSet, basename='company-account')
 
-CompanyViewSet.as_view({'get': 'list'})
-CompanyViewSet.as_view({'get': 'retrieve'})
-CompanyViewSet.as_view({'post': 'create'})
-CompanyViewSet.as_view({'put': 'update'})
-CompanyViewSet.as_view({'delete': 'destroy'})
+urlpatterns = router.urls
 
