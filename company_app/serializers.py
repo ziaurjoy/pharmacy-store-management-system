@@ -16,7 +16,7 @@ class CompanyBankSerliazer(serializers.ModelSerializer):
 class CompanyBankSerliazerQuery(serializers.ModelSerializer):
     class Meta:
         model=CompanyBank
-        exclude = ('added_on',)
+        fields = '__all__'
     def to_representation(self, instance):
         response=super().to_representation(instance)
         response['company']=CompanySerliazer(instance.company).data

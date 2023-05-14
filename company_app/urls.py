@@ -6,9 +6,9 @@ from company_app.views import CompanyViewSet, CompanyBankViewSet, CompanyAccounV
 from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
-router.register(r'api/viewset', CompanyViewSet, basename='company')
-router.register(r'api/bank/viewset', CompanyBankViewSet, basename='company-bank')
-router.register(r'api/account/viewset', CompanyAccounViewSet, basename='company-account')
+router.register('company', CompanyViewSet, basename='company')
+router.register('company-bank', CompanyBankViewSet, basename='company-bank')
+router.register('company-account', CompanyAccounViewSet, basename='company-account')
 
 urlpatterns = router.urls
 

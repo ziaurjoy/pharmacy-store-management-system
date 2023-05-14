@@ -4,6 +4,7 @@ from company_app.serializers import CompanySerliazer, CompanyBankSerliazer, Comp
 from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework import status
+from django.shortcuts import get_object_or_404
 
 import datetime
 
@@ -101,7 +102,6 @@ class CompanyViewSet(viewsets.ViewSet):
 
 
 class CompanyBankViewSet(viewsets.ViewSet):
-
     def list(self, request):
         queryset = CompanyBank.objects.all()
         serializer = CompanyBankSerliazerQuery(queryset, many=True)
@@ -140,7 +140,7 @@ class CompanyBankViewSet(viewsets.ViewSet):
 
     def retrieve(self, request, pk=None):
         try:
-            company_bank = CompanyBank.objects.get(id=pk)
+            company_bank = CompanyBank.objects.get(pk=pk)
             serializer = CompanyBankSerliazerQuery(company_bank)
             response_data = {
                 "data": serializer.data,
@@ -150,10 +150,7 @@ class CompanyBankViewSet(viewsets.ViewSet):
 
             }
             return Response(response_data)
-        
         except Exception:
-            company_bank = CompanyBank.objects.get(id=pk)
-            serializer = CompanyBankSerliazerQuery(company_bank)
             response_data = {
                 "message": "Error Company Bank Data",
                 "error": True,
@@ -235,7 +232,6 @@ class CompanyAccounViewSet(viewsets.ViewSet):
             }
             return Response(response_data)
         except Exception as err:
-            print(err)
             response_data = {
                 "message": "Error Saving Company Account Data",
                 "error": True,
@@ -307,3 +303,9 @@ class CompanyAccounViewSet(viewsets.ViewSet):
                 "status": status.HTTP_400_BAD_REQUEST
             }
             return Response(response_data)
+        
+
+
+
+CompanyBankViewSet.as_view({'get': 'retrieve'})
+CompanyBankViewSet.as_view({'get': 'list'})
